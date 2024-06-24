@@ -18,7 +18,7 @@ const RandomMeal: React.FC = () => {
     useContext(FavoritesContext) || {};
 
   const isFavorite = (mealId: string) =>
-    favorites.some((meal: any) => meal.idMeal === mealId);
+    favorites?.some((meal: any) => meal.idMeal === mealId) || false;
 
   const generateRandomMeal = async () => {
     try {
@@ -64,9 +64,9 @@ const RandomMeal: React.FC = () => {
                   <div
                     className="cursor-pointer"
                     onClick={() =>
-                      isFavorite(meal.idMeal)
+                      isFavorite(meal.idMeal) && removeFavorite
                         ? removeFavorite(meal.idMeal)
-                        : addFavorite(meal)
+                        : addFavorite && addFavorite(meal)
                     }
                   >
                     <HeartIcon

@@ -11,7 +11,7 @@ export default function CategoryItems({ meals }: { meals: any }) {
     useContext(FavoritesContext) || {};
 
   const isFavorite = (mealId: string) =>
-    favorites.some((meal: any) => meal.idMeal === mealId);
+    favorites?.some((meal: any) => meal.idMeal === mealId) || false;
 
   return (
     <div className="mt-8">
@@ -38,10 +38,11 @@ export default function CategoryItems({ meals }: { meals: any }) {
                 </div>
               </div>
               <div
+                className="cursor-pointer"
                 onClick={() =>
-                  isFavorite(meal.idMeal)
+                  isFavorite(meal.idMeal) && removeFavorite
                     ? removeFavorite(meal.idMeal)
-                    : addFavorite(meal)
+                    : addFavorite && addFavorite(meal)
                 }
               >
                 <HeartIcon
